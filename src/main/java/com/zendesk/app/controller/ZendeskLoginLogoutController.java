@@ -57,7 +57,6 @@ public class ZendeskLoginLogoutController {
 	}
 	
 	
-	
 	@RequestMapping(value = ZendeskConstants.REQUEST_LOGOUT, method = RequestMethod.GET)
 	public String logout(HttpServletRequest request, HttpSession session) {
 		logger.info("\n\nInside logout() :::::: ZendeskLoginLogoutController : Logout functionality");

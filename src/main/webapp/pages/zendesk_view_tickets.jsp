@@ -5,11 +5,14 @@
 	<meta charset="UTF-8">
 	<title>Zendesk Ticket Viewer</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<!-- Favicon -->
+	<link rel="icon" href="../images/zendesk.png">
   	
-  	<!--  CDN Import : Bootstrap, jQuery-->
-  	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  	<!--  CDN Import : Bootstrap 4, jQuery 3.5.1-->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
   	
 	
 	<!-- jQuery table (pagination + sorter + search) JS -->
@@ -20,27 +23,27 @@
 </head>
 
 <body>
-	<div class="container" style="padding: 50px 0px 0px 0px">
+	<div class="container" style="padding: 50px 0px 150px 0px">
 		<div style="padding-bottom: 100px;">
 			<button class="btn btn-danger" onclick="logout()" style="float: right; width: 15%; padding: 8px;">Logout</button>
 			
 			<img src="../images/zendesk.png" style="height: 50px;" />
-			<h2>Zendesk Ticket Viewer</h2>
+			<h2 style="padding-top: 10px;">Zendesk Ticket Viewer</h2>
 		</div>
 
 		<div>
 			<div id="ticket-count-div">
-				<h4 style="float: right; background: yellow; padding: 8px; font-weight: bold;">Total Tickets : <span id="ticketCount"></span> </h4>
+				<h5 style="float: right; background: yellow; padding: 8px; font-weight: bold;">Total Tickets : <span id="ticketCount"></span></h5>
 			</div>
 			
 			<div id="ticket-details-div" style="width: 50%; display: flex; padding-bottom: 50px;">
 				<select class="form-control" id="tickets-range" style="width: 40%"></select>
-				<button class="btn btn-primary" onclick="getTicketDetails()" style="width: 25%; padding: 7px; margin-left: 25px;">View Tickets</button>
+				<button class="btn btn-primary" onclick="getTicketDetails()" style="width: 25%; margin-left: 25px;">View Tickets</button>
 			</div>
 			
 			<div id="ticket-export-div" style="padding-bottom: 25px;">
 				<input type="text" id="search" class="form-control" placeholder="Search in table..." style="width: 25%; float: right; margin-bottom: 10px;">
-				<button class="btn btn-success" onclick="exportTable('csv')">Export to CSV</button>
+				<button class="btn btn-success" onclick="exportTableAsCsv()">Export to CSV</button>
 			</div>
 			
 			<div>
@@ -53,7 +56,6 @@
 	</div>
 	
 </body>
-
 
 <script>
 $(document).ready(function(){
@@ -144,8 +146,7 @@ function formTableAndApplyPagination(id, tickets, columns, searchField){
 }
 
 
-
-function exportTable(type){
+function exportTableAsCsv(){
 	var timestamp = Date.now();
 	var filename = 'tickets_extract_' +timestamp +'.csv';
 	

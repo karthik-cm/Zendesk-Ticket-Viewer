@@ -35,9 +35,9 @@ public class ZendeskApiService {
 	private static final String ERROR_MSG = "ERROR_MSG";
 	
 	
+	// Zendesk API's
 	private static final String ZENDESK_COUNT_TICKETS_API = "https://"+SUBDOMAIN+"/api/v2/tickets/count.json";
 	private static final String ZENDESK_LIST_TICKETS_API = "https://"+SUBDOMAIN+"/api/v2/tickets.json?page="+PAGE;
-	
 	
 	
 	public JSONObject authenticate_login(String subdomain, String emailid, String password, String page, HttpSession session) {
@@ -52,7 +52,7 @@ public class ZendeskApiService {
 				url = url.replaceFirst("PAGE", page);
 
 
-				// Check Zendesk service is up and running + Authenticate user details
+				// Check Zendesk service is up + Authenticate user details
 				JSONObject apiResponseJson = call_zendesk_api_service(url, emailid, password);
 
 				int statusCode = apiResponseJson.getInt(STATUS_CODE);
@@ -105,7 +105,6 @@ public class ZendeskApiService {
 	}
 	
 	
-	
 	//	Get total tickets count (test purpose)
 	public JSONObject call_zendesk_count_ticket_service(String subdomain, String emailid, String password) {
 		String url = ZENDESK_COUNT_TICKETS_API;
@@ -123,7 +122,6 @@ public class ZendeskApiService {
 		
 		return apiResponseJson;
 	}
-	
 	
 	
 	//	View tickets based on page (count=100)
@@ -151,7 +149,6 @@ public class ZendeskApiService {
 			return null;
 		}
 	}
-	
 	
 	
 	// Generic service method to call any Zendesk API service
@@ -213,6 +210,5 @@ public class ZendeskApiService {
 		
 		return apiResponseJson;
 	}
-
 	
 }

@@ -20,7 +20,7 @@ public class ZendeskHomePageController {
 	@RequestMapping(value = ZendeskConstants.REQUEST_HOME_PAGE, method = RequestMethod.GET)
 	public String request_home_page(HttpSession session) {
 		logger.info("\n\n:::::::::::: APPLICATION START ::::::::::::\n");
-		logger.info("Inside request_home_page() :::::: ZendeskHomePageController : Loading the home page for Zendesk Application");
+		logger.info("Inside request_home_page() :::::: ZendeskHomePageController : Loading the home page for Zendesk Ticket Viewer App");
 		return ZendeskConstants.VIEW_ZENDESK_HOME_PAGE;
 	}
 }
