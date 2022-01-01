@@ -76,6 +76,10 @@ public class ZendeskViewTicketController {
 					errorFlag = true;
 				}
 			}
+			else {
+				// Session invalidated
+				errorFlag = true;
+			}
 			
 			
 			if(errorFlag) {

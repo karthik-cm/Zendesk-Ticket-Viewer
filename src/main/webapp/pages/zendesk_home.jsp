@@ -80,7 +80,7 @@ function loginToApp(){
 	let password = $('form#login-form').find('#password').val();
 	
 	
-	if(subdomain != null && subdomain.length > 0 && emailid != null && emailid.length > 0 && password.length > 0 && password != null ){
+	if(subdomain != null && subdomain.length > 0 && emailid != null && emailid.length > 0 && password != null && password.length > 0){
 		
 		// Check for Subdomain field
 		if(subdomain != null && subdomain.length > 0 ){

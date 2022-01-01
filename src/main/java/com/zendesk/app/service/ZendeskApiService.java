@@ -39,6 +39,8 @@ public class ZendeskApiService {
 	private static final String ZENDESK_COUNT_TICKETS_API = "https://"+SUBDOMAIN+"/api/v2/tickets/count.json";
 	private static final String ZENDESK_LIST_TICKETS_API = "https://"+SUBDOMAIN+"/api/v2/tickets.json?page="+PAGE;
 	
+	// private static final String ZENDESK_PAGINATION_API = "https://"+SUBDOMAIN+"/api/v2/tickets.json?page[size]=25";
+	
 	
 	public JSONObject authenticate_login(String subdomain, String emailid, String password, String page, HttpSession session) {
 		logger.info("\n\nInside authenticate_login() ::::: ZendeskApiService");
@@ -76,7 +78,7 @@ public class ZendeskApiService {
 				else {
 					// ERROR
 					loginResponse.put(STATUS, "ERROR");
-					logger.info("ERROR: Zendesk List Tickets service is down! Returning to view with appropriate message...");
+					logger.info("ERROR: Some error occurred while processing! Returning to view with appropriate message...");
 
 					if(statusCode == 401) {
 						// username / password is wrong - couldn't authenticate you
@@ -129,6 +131,11 @@ public class ZendeskApiService {
 		String url = ZENDESK_LIST_TICKETS_API;
 		url = url.replaceFirst("SUBDOMAIN", subdomain);
 		url = url.replaceFirst("PAGE", page);
+		
+		
+//		String url = ZENDESK_PAGINATION_API;
+//		url = url.replaceFirst("SUBDOMAIN", subdomain);
+		
 		
 		JSONObject apiResponseJson = new JSONObject();
 		int statusCode = 404;

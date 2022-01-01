@@ -11,16 +11,16 @@ import com.zendesk.app.service.ZendeskApiService;
 class ZendeskTicketViewerAppApplicationTests {
 
 	// Valid credentials
-	private static String SUBDOMAIN = "zcckarthikcm.zendesk.com"; 
-	private static String EMAILID = "kcheernallimanjunath@scu.edu"; 
-	private static String PASSWORD = "Test@123";
+	private static String SUBDOMAIN = ""; 
+	private static String EMAILID = ""; 
+	private static String PASSWORD = "";
 	private static String PAGE = "1";
 
 
 	// Invalid credentials
-	private static String INVALID_SUBDOMAIN = "dsfhsajhaskjdsakj.zendesk.com"; 
-	private static String INVALID_EMAILID = "asdjhbshasbdjh@scu.edu"; 
-	private static String INVALID_PASSWORD = "sadsadbjh";
+	private static String INVALID_SUBDOMAIN = ""; 
+	private static String INVALID_EMAILID = ""; 
+	private static String INVALID_PASSWORD = "";
 
 
 	private static final String ZENDESK_LIST_TICKETS_API = "https://"+SUBDOMAIN+"/api/v2/tickets.json?page="+PAGE;
@@ -58,7 +58,7 @@ class ZendeskTicketViewerAppApplicationTests {
 		assertEquals(401, apiResponse3.getInt("STATUS_CODE")); // Expected HTTP STATUS CODE IS 401
 
 
-		// Wrong credentials - invalid emailid
+		// Wrong credentials - invalid password
 		JSONObject apiResponse4 = zendeskApiService.call_zendesk_api_service(ZENDESK_LIST_TICKETS_API, EMAILID, INVALID_PASSWORD);
 		assertEquals(401, apiResponse4.getInt("STATUS_CODE")); // Expected HTTP STATUS CODE IS 401
 	}
@@ -66,7 +66,7 @@ class ZendeskTicketViewerAppApplicationTests {
 
 	@Test
 	void test_call_zendesk_view_ticket_service() {
-		/*** TO TEST ZENDESK VIEW TICKET SERVICE ***/
+		/*** TO TEST ZENDESK VIEW TICKET SERVICE METHOD ***/
 
 
 		// Right credentials

@@ -65,10 +65,16 @@ $(document).ready(function(){
 	if(viewTicketsResponse != null){
 		var tickets = viewTicketsResponse.hasOwnProperty('tickets') ? viewTicketsResponse.tickets : null;
 		
-		if(tickets != null && tickets.length > 0){
+		if(tickets != null && tickets.length == 0){
+			$('div > span#error-msg').text('Error: No tickets present for this page no - '+page);
+			$('#ticket-count-div, #ticket-export-div, #ticket-details-div').hide();
+		}
+		else if(tickets != null && tickets.length > 0){
 			var count = parseInt(viewTicketsResponse.count);
 			var dropdownCount = Math.ceil(parseFloat(count/100));
 		
+			
+			// total no of tickets count
 			$('#ticketCount').text(count);
 			
 			
@@ -127,9 +133,6 @@ function formTableAndApplyPagination(id, tickets, columns, searchField){
         formatCell: null,
         rowsPerPage: 25,
         pagination: true,
-        tableDidUpdate: function() {
-        	styleTable();
-        },
         onPaginationChange: function(nextPage, setPage) {
             setPage(nextPage);
         }
@@ -149,6 +152,8 @@ function formTableAndApplyPagination(id, tickets, columns, searchField){
 function exportTableAsCsv(){
 	var timestamp = Date.now();
 	var filename = 'tickets_extract_' +timestamp +'.csv';
+	
+	var type = 'csv';
 	
 	$('.gs-table').tableHTMLExport({
 	  type: type,
